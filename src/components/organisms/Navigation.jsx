@@ -5,8 +5,7 @@ import Logo from '../molecules/header/Logo'
 const Navigation = () => {
   return (
     <>
-      <Logo />
-      <Mainmenu /> 
+        <Mainmenu />
     </>
   )
 }
