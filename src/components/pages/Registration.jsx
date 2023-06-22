@@ -4,7 +4,7 @@ import { API_URL } from "../../constants/env";
 import { setUserToken } from "../../helpers/auth";
 import { Link, useNavigate } from "react-router-dom";
 
-function Login() {
+const Registration = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState();
   const navigate = useNavigate();
@@ -29,20 +29,23 @@ function Login() {
     const userCredentials = {
       email: form.email,
       password: form.password,
+      details: {
+        fullName: form.name,
+      },
     };
 
     axios
-      .post(`${API_URL}/public/login`, userCredentials)
+      .post(`${API_URL}/public/users`, userCredentials)
       .then((response) => {
         setUserToken(response.data.data.token);
         setLoading(false);
         navigate("/");
-        console.warn(`User Logged In succesfully ${JSON.stringify(response)}`);
+        console.warn(`User created succesfully ${JSON.stringify(response)}`);
       })
       .catch((err) => {
-        console.warn("Se ha producido un error: " + err);
-        setLoading(false);
         setError(err);
+        setLoading(false);
+        console.warn("Se ha producido un error: " + err);
       });
   };
 
@@ -53,10 +56,25 @@ function Login() {
     >
       <div className="mb-4">
         <label
+          htmlFor="name"
+          className="block text-gray-700 text-sm font-bold mb-2"
+        >
+          Full Name{" "}
+        </label>
+        <input
+          id="name"
+          type="name"
+          placeholder="Daniel Corralejo"
+          value={form.name}
+          onChange={handleChange}
+          required
+          className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        />
+        <label
           htmlFor="email"
           className="block text-gray-700 text-sm font-bold mb-2"
         >
-          User email{" "}
+          Email{" "}
         </label>
         <input
           id="email"
@@ -71,7 +89,7 @@ function Login() {
           htmlFor="password"
           className="block text-gray-700 text-sm font-bold mb-2"
         >
-          Enter Password{" "}
+          Create Password{" "}
         </label>
         <input
           id="password"
@@ -88,12 +106,12 @@ function Login() {
           type="submit"
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
         >
-          {loading ? <>Loading...</> : <>Sign In</>}
+          {loading ? <>Loading...</> : <>Create Account</>}
         </button>
       </div>
       <div className="flex justify-center">
-        <Link to="/register">
-          <p>Register here</p>
+        <Link to="/login">
+          <p>Sign In here</p>
         </Link>
       </div>
       {error && (
@@ -103,6 +121,6 @@ function Login() {
       )}
     </form>
   );
-}
+};
 
-export default Login;
+export default Registration;
