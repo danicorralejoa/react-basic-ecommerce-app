@@ -65,7 +65,7 @@ const Registration = () => {
           id="name"
           type="name"
           placeholder="Daniel Corralejo"
-          value={form.name}
+          value={form.name || ""}
           onChange={handleChange}
           required
           className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -80,7 +80,7 @@ const Registration = () => {
           id="email"
           type="email"
           placeholder="test@test.com"
-          value={form.email}
+          value={form.email || ""}
           onChange={handleChange}
           required
           className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -96,7 +96,7 @@ const Registration = () => {
           type="password"
           placeholder="Password"
           onChange={handleChange}
-          value={form.password}
+          value={form.password || ""}
           required
           className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
         />
