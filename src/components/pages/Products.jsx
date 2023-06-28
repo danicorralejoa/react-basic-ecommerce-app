@@ -1,9 +1,9 @@
 import React from "react";
-import getRequest from "../../hooks/getRequest";
+import useFetchGetRequest from "../../hooks/useFetchGetRequest";
 
 const Products = () => {
   const productsEndpoint = "public/products";
-  const { data, error, loading } = getRequest(productsEndpoint);
+  const { data, error, loading } = useFetchGetRequest(productsEndpoint);
 
   if (loading) return <h1>Cargando...</h1>;
   if (error) return <h1>Erro loading products</h1>;

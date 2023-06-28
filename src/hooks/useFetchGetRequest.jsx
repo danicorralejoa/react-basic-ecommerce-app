@@ -2,7 +2,7 @@ import axios from "axios";
 import { API_URL } from "../constants/env";
 import { useEffect, useState } from "react";
 
-const getRequest = (endPoint, headers = {}) => {
+const useFetchGetRequest = (endPoint, headers = {}) => {
   const [data, setData] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState();
@@ -27,4 +27,4 @@ const getRequest = (endPoint, headers = {}) => {
   return { data, error, loading };
 };
 
-export default getRequest;
+export default useFetchGetRequest;

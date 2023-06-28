@@ -5,6 +5,7 @@ import Products from "../components/pages/Products.jsx";
 import Homepage from "../components/pages/Homepage.jsx";
 import Login from "../components/pages/Login.jsx";
 import Registration from "../components/pages/Registration.jsx";
+import { ProductCreationForm } from "../components/pages/admin/ProductCreationForm.jsx";
 
 const router = createBrowserRouter([
   {
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
   {
     path: "/register",
     element: <Registration />,
+  },
+  {
+    path: "/admin/products",
+    element: <ProductCreationForm />,
   },
 ]);
 
