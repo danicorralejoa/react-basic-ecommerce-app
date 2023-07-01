@@ -37,9 +37,9 @@ const Mainmenu = () => {
           </li>
           {!token() ? (
             <li>
-              <a className="menu-item">
-                <Link to="/login">Log In</Link>
-              </a>
+              <Link className="menu-item" to="/login">
+                Log In
+              </Link>
             </li>
           ) : (
             <li>

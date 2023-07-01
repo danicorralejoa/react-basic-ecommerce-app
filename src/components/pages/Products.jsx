@@ -3,11 +3,11 @@ import useFetchGetRequest from "../../hooks/useFetchGetRequest";
 import ProductsGrid from "../organisms/ProductsGrid";
 
 const Products = () => {
-  const productsEndpoint = "public/products";
+  const productsEndpoint = "products";
   const { data, error, loading } = useFetchGetRequest(productsEndpoint);
 
   if (loading) return <h1>Cargando...</h1>;
-  if (error) return <h1>Error loading products</h1>;
+  if (error) return <h1>Error loading products: {error.message}</h1>;
 
   return (
     <section className="py-16 max-w-256 m-auto">
