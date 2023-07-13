@@ -7,6 +7,7 @@ import Login from "../components/pages/Login.jsx";
 import Registration from "../components/pages/Registration.jsx";
 import { ProductCreationForm } from "../components/pages/admin/ProductCreationForm.jsx";
 import ProductDetailPage from "../components/pages/Product.jsx";
+import ProductDeletionForm from "../components/pages/admin/ProductDeletionForm.jsx";
 
 const router = createBrowserRouter([
   {
@@ -37,8 +38,12 @@ const router = createBrowserRouter([
     element: <Registration />,
   },
   {
-    path: "/admin/products",
+    path: "/admin/products/create",
     element: <ProductCreationForm />,
+  },
+  {
+    path: "/admin/products",
+    element: <ProductDeletionForm />,
   },
 ]);
 
