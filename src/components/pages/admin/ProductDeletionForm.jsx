@@ -17,7 +17,6 @@ const ProductDeletionForm = () => {
     );
     if (confirmMesseage) {
       console.log(id);
-      navigate("/");
     }
   };
 
