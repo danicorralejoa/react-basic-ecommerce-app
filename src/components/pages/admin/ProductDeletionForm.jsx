@@ -1,12 +1,12 @@
 import React from "react";
 import useFetchGetRequest from "../../../hooks/useFetchGetRequest";
 import { currencyFormatter } from "../../../helpers/dataTransformations";
-import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { ALTERNATIVE_API_URL } from "../../../constants/env";
 
 const ProductDeletionForm = () => {
   const productsEndpoint = "products";
   const { data, error, loading } = useFetchGetRequest(productsEndpoint);
-  const navigate = useNavigate();
 
   if (loading) return <h1>Cargando...</h1>;
   if (error) return <h1>Error loading products: {error.message}</h1>;
@@ -16,7 +16,16 @@ const ProductDeletionForm = () => {
       "Are you sure you want to delete this product?"
     );
     if (confirmMesseage) {
-      console.log(id);
+      axios
+        .delete(`${ALTERNATIVE_API_URL}/products/${id}`)
+        .then((response) => {
+          console.log(response);
+          alert("Product Deleted");
+          window.location.reload(false);
+        })
+        .catch((error) => {
+          console.warn(error);
+        });
     }
   };
 
@@ -43,13 +52,16 @@ const ProductDeletionForm = () => {
               </th>
             </tr>
           </thead>
-          <tbody>
+          <>
             {data.lenght === 0 ? (
               <p>No products to show</p>
             ) : (
               data.map((product) => (
-                <>
-                  <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <tbody key={product.id}>
+                  <tr
+                    key={product.id}
+                    className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
+                  >
                     <th
                       scope="row"
                       className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
@@ -76,10 +88,10 @@ const ProductDeletionForm = () => {
                       </a>
                     </td>
                   </tr>
-                </>
+                </tbody>
               ))
             )}
-          </tbody>
+          </>
         </table>
       </div>
     </>

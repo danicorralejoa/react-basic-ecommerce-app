@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ALTERNATIVE_API_URL, API_URL } from "../constants/env";
+import { ALTERNATIVE_API_URL } from "../constants/env";
 import { useEffect, useState } from "react";
 
 const useFetchGetRequest = (endPoint, headers = {}) => {
@@ -12,7 +12,7 @@ const useFetchGetRequest = (endPoint, headers = {}) => {
     axios
       .get(`${ALTERNATIVE_API_URL}/${endPoint}`)
       .then((response) => {
-        console.log(response);
+        //console.log(response);
         setData(response.data);
         setLoading(false);
       })
