@@ -2,7 +2,7 @@ import axios from "axios";
 import { ALTERNATIVE_API_URL } from "../constants/env";
 import { useEffect, useState } from "react";
 
-const useFetchGetRequest = (endPoint = {}) => {
+const useAdminDeleteRequest = (endPoint = {}) => {
   const [data, setData] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState();
@@ -12,7 +12,7 @@ const useFetchGetRequest = (endPoint = {}) => {
     axios
       .get(`${ALTERNATIVE_API_URL}/${endPoint}`)
       .then((response) => {
-        //console.log(response);
+        console.log(response);
         setData(response.data);
         setLoading(false);
       })
@@ -31,4 +31,4 @@ const useFetchGetRequest = (endPoint = {}) => {
   return { data, error, loading };
 };
 
-export default useFetchGetRequest;
+export default useAdminDeleteRequest;

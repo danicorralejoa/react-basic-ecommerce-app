@@ -3,8 +3,9 @@ import useFetchGetRequest from "../../../hooks/useFetchGetRequest";
 import { currencyFormatter } from "../../../helpers/dataTransformations";
 import axios from "axios";
 import { ALTERNATIVE_API_URL } from "../../../constants/env";
+import { Link } from "react-router-dom";
 
-const ProductDeletionForm = () => {
+const ProductAdministratorForm = () => {
   const productsEndpoint = "products";
   const { data, error, loading } = useFetchGetRequest(productsEndpoint);
 
@@ -48,6 +49,9 @@ const ProductDeletionForm = () => {
                 Price
               </th>
               <th scope="col" className="px-6 py-3">
+                Edit Product
+              </th>
+              <th scope="col" className="px-6 py-3">
                 Delete Product
               </th>
             </tr>
@@ -79,6 +83,13 @@ const ProductDeletionForm = () => {
                       {currencyFormatter(product.price)}
                     </td>
                     <td className="px-6 py-4">
+                      <a className="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                        <Link to={`/admin/products/update/${product.id}`}>
+                          Edit
+                        </Link>
+                      </a>
+                    </td>
+                    <td className="px-6 py-4">
                       <a
                         onClick={() => handleDeleteButton(product.id)}
                         href="#"
@@ -98,4 +109,4 @@ const ProductDeletionForm = () => {
   );
 };
 
-export default ProductDeletionForm;
+export default ProductAdministratorForm;
