@@ -27,7 +27,6 @@ export const ProductUpdatenForm = () => {
     <>
       <h1>Update Products</h1>
       <form onSubmit={handleForm}>
-        {console.log(data)}
         <div className="mb-6">
           <label
             htmlFor="productName"
@@ -88,7 +87,7 @@ export const ProductUpdatenForm = () => {
             required
           />
         </div>
-        <ProductCategorySelection />
+        <ProductCategorySelection categorySelected={data.category.name} />
         <div className="flex items-start mb-6">
           <button
             type="submit"
@@ -97,9 +96,7 @@ export const ProductUpdatenForm = () => {
             Update Product
           </button>
         </div>
-        <a>
-          <Link to="/">Go back to Homepage</Link>
-        </a>
+        <Link to="/">Go back to Homepage</Link>
       </form>
     </>
   );
