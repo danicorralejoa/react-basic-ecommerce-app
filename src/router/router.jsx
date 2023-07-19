@@ -8,6 +8,7 @@ import Registration from "../components/pages/Registration.jsx";
 import ProductDetailPage from "../components/pages/ProductDetailPage.jsx";
 import { ProductUpdatenForm } from "../components/pages/admin/ProductUpdateForm.jsx";
 import ProductAdministratorForm from "../components/pages/admin/ProductAdministratorForm.jsx";
+import Admin from "../components/templates/Admin.jsx";
 
 const router = createBrowserRouter([
   {
@@ -38,16 +39,22 @@ const router = createBrowserRouter([
     element: <Registration />,
   },
   {
-    path: "/admin/products/create",
-    element: <ProductUpdatenForm />,
-  },
-  {
-    path: "/admin/products",
-    element: <ProductAdministratorForm />,
-  },
-  {
-    path: "/admin/products/update/:id",
-    element: <ProductUpdatenForm />,
+    path: "/admin",
+    element: <Admin />,
+    children: [
+      {
+        path: "/admin/products/create",
+        element: <ProductUpdatenForm />,
+      },
+      {
+        path: "/admin/products",
+        element: <ProductAdministratorForm />,
+      },
+      {
+        path: "/admin/products/update/:id",
+        element: <ProductUpdatenForm />,
+      },
+    ],
   },
 ]);
 

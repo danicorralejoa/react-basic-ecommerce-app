@@ -2,7 +2,7 @@ import Logo from "./Logo";
 import { deleteUserToken, token } from "../../../helpers/auth";
 import { Link, useNavigate } from "react-router-dom";
 
-const Mainmenu = () => {
+const MainMenu = () => {
   const navigate = useNavigate();
 
   const handleSessionStatus = () => {
@@ -54,4 +54,4 @@ const Mainmenu = () => {
   );
 };
 
-export default Mainmenu;
+export default MainMenu;
