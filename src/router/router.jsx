@@ -5,7 +5,6 @@ import Products from "../components/pages/Products.jsx";
 import Homepage from "../components/pages/Homepage.jsx";
 import Login from "../components/pages/Login.jsx";
 import Registration from "../components/pages/Registration.jsx";
-import { ProductCreationForm } from "../components/pages/admin/ProductCreationForm.jsx";
 import ProductDetailPage from "../components/pages/ProductDetailPage.jsx";
 import { ProductUpdatenForm } from "../components/pages/admin/ProductUpdateForm.jsx";
 import ProductAdministratorForm from "../components/pages/admin/ProductAdministratorForm.jsx";
@@ -40,7 +39,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/admin/products/create",
-    element: <ProductCreationForm />,
+    element: <ProductUpdatenForm />,
   },
   {
     path: "/admin/products",

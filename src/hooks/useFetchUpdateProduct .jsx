@@ -10,7 +10,7 @@ const useFetchUpdateProduct = (data, id) => {
     })
     .catch((err) => {
       console.warn(err);
-      return alert("Error updating ");
+      return alert(`Error Updating Product ${err}`);
     });
 };
 
