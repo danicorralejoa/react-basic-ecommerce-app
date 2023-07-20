@@ -1,17 +1,17 @@
 import React, { useState } from "react";
-import axios from "axios";
-import { API_URL } from "../../constants/env";
-import { setUserToken } from "../../helpers/auth";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import useCreateUser from "../../hooks/useCreateUser";
 
 const Registration = () => {
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState();
-  const navigate = useNavigate();
+  //const [loading, setLoading] = useState(false);
+  //const [error, setError] = useState();
+  const { error, loading, createUser } = useCreateUser();
 
   const [form, setForm] = useState({
     email: "",
     password: "",
+    name: "",
+    avatar: "",
   });
 
   const handleChange = (e) => {
@@ -23,30 +23,14 @@ const Registration = () => {
 
   const formSubtmit = (e) => {
     e.preventDefault();
-    setLoading(true);
-    setError();
 
     const userCredentials = {
       email: form.email,
       password: form.password,
-      details: {
-        fullName: form.name,
-      },
+      name: form.name,
+      avatar: form.avatar,
     };
-
-    axios
-      .post(`${API_URL}/public/users`, userCredentials)
-      .then((response) => {
-        setUserToken(response.data.data.token);
-        setLoading(false);
-        navigate("/");
-        console.warn(`User created succesfully ${JSON.stringify(response)}`);
-      })
-      .catch((err) => {
-        setError(err);
-        setLoading(false);
-        console.warn("Se ha producido un error: " + err);
-      });
+    createUser(userCredentials);
   };
 
   return (
@@ -63,9 +47,24 @@ const Registration = () => {
         </label>
         <input
           id="name"
-          type="name"
+          type="text"
           placeholder="Daniel Corralejo"
           value={form.name || ""}
+          onChange={handleChange}
+          required
+          className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        />
+        <label
+          htmlFor="avatar"
+          className="block text-gray-700 text-sm font-bold mb-2"
+        >
+          Avatar{" "}
+        </label>
+        <input
+          id="avatar"
+          type="text"
+          placeholder="https://www.w3schools.com/html/img_submit.gif"
+          value={form.avatar || ""}
           onChange={handleChange}
           required
           className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
