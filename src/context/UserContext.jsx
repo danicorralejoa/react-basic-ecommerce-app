@@ -9,7 +9,8 @@ const UserProvider = ({ children }) => {
   const [userData, setUserData] = useState();
 
   useEffect(() => {
-    if (token) {
+    //console.log(typeof token());
+    if (typeof token() != "undefined") {
       axios
         .get(`${ALTERNATIVE_API_URL}/auth/profile`, {
           headers: {

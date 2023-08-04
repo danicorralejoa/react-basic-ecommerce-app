@@ -9,7 +9,7 @@ export const setUserToken = (accessToken, refreshToken) => {
 };
 
 export const token = () => {
-  return JSON.parse(localStorage.getItem(USER_TOKEN_KEY)).access_token;
+  return JSON.parse(localStorage.getItem(USER_TOKEN_KEY))?.access_token;
 };
 
 export const deleteUserToken = () => {
