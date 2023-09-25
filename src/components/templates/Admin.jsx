@@ -1,17 +1,17 @@
 import React from "react";
 import Navigation from "../organisms/Navigation";
 import { Outlet } from "react-router-dom";
-import MainMenu from "../molecules/header/MainMenu";
+import AdminMenu from "../molecules/header/Adminmenu";
 
-const App = () => {
+const Admin = () => {
   return (
     <>
       <Navigation>
-        <MainMenu />
+        <AdminMenu />
       </Navigation>
       <Outlet />
     </>
   );
 };
 
-export default App;
+export default Admin;

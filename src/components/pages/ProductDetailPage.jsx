@@ -1,15 +1,31 @@
-import React from "react";
+import React, { useContext } from "react";
 import useFetchGetRequest from "../../hooks/useFetchGetRequest";
 import { useParams } from "react-router-dom";
 import { currencyFormatter } from "../../helpers/dataTransformations";
+import { CartContext } from "../../context/CartContext";
 
 const ProductDetailPage = () => {
   const { id } = useParams();
+  const { dispatch } = useContext(CartContext);
   const productsEndpoint = `products/${id}`;
   const { data, error, loading } = useFetchGetRequest(productsEndpoint);
 
   if (loading) return <h1>Cargando...</h1>;
   if (error) return <h1>Error loading products: {error.message}</h1>;
+
+  const addToCart = () => {
+    dispatch({
+      type: "ADD_TO_CART",
+      payload: data,
+    });
+  };
+
+  const removeFromCart = () => {
+    dispatch({
+      type: "REMOVE_FROM_CART",
+      payload: data,
+    });
+  };
 
   return (
     <div className="flex flex-col md:flex-row justify-center items-start p-4">
@@ -29,8 +45,17 @@ const ProductDetailPage = () => {
           </span>
           <span className="text-gray-600">In Stock</span>
         </div>
-        <button className="bg-blue-500 text-white py-2 px-4 rounded">
+        <button
+          className="bg-blue-500 text-white py-2 px-4 rounded"
+          onClick={addToCart}
+        >
           Add to Cart
+        </button>
+        <button
+          className="bg-red-500 text-white py-2 px-4 rounded"
+          onClick={removeFromCart}
+        >
+          Remove from Cart
         </button>
       </div>
     </div>

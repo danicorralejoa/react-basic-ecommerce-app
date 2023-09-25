@@ -1,9 +1,12 @@
 import Logo from "./Logo";
 import { deleteUserToken, token } from "../../../helpers/auth";
 import { Link, useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { UserContext } from "../../../context/UserContext";
 
-const Mainmenu = () => {
+const MainMenu = () => {
   const navigate = useNavigate();
+  const { userData } = useContext(UserContext);
 
   const handleSessionStatus = () => {
     deleteUserToken();
@@ -35,6 +38,11 @@ const Mainmenu = () => {
               About Us
             </Link>
           </li>
+          <li>
+            <Link to="/cart" className="menu-item">
+              Cart
+            </Link>
+          </li>
           {!token() ? (
             <li>
               <Link className="menu-item" to="/login">
@@ -42,11 +50,20 @@ const Mainmenu = () => {
               </Link>
             </li>
           ) : (
-            <li>
-              <a className="menu-item" onClick={handleSessionStatus}>
-                Log Out
-              </a>
-            </li>
+            <>
+              {userData?.role == "admin" && (
+                <li>
+                  <Link className="menu-item" to="/admin">
+                    Admin
+                  </Link>
+                </li>
+              )}
+              <li>
+                <a className="menu-item" onClick={handleSessionStatus}>
+                  Log Out
+                </a>
+              </li>
+            </>
           )}
         </ul>
       </nav>
@@ -54,4 +71,4 @@ const Mainmenu = () => {
   );
 };
 
-export default Mainmenu;
+export default MainMenu;

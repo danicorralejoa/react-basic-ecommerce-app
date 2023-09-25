@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { API_URL } from "../../constants/env";
+import { ALTERNATIVE_API_URL, API_URL } from "../../constants/env";
 import { setUserToken } from "../../helpers/auth";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -32,12 +32,14 @@ function Login() {
     };
 
     axios
-      .post(`${API_URL}/public/login`, userCredentials)
+      .post(`${ALTERNATIVE_API_URL}/auth/login/`, userCredentials)
       .then((response) => {
-        setUserToken(response.data.data.token);
+        setUserToken(response.data.access_token, response.data.refresh_token);
         setLoading(false);
+        console.warn(
+          `User Logged In succesfully ${JSON.stringify(response.data)}`
+        );
         navigate("/");
-        console.warn(`User Logged In succesfully ${JSON.stringify(response)}`);
       })
       .catch((err) => {
         console.warn("Se ha producido un error: " + err);
@@ -94,6 +96,11 @@ function Login() {
       <div className="flex justify-center">
         <Link to="/register">
           <p>Register here</p>
+        </Link>
+      </div>
+      <div className="flex justify-center">
+        <Link to="/">
+          <p>Go Back Homepage</p>
         </Link>
       </div>
       {error && (
