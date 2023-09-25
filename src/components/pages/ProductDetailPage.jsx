@@ -6,7 +6,7 @@ import { CartContext } from "../../context/CartContext";
 
 const ProductDetailPage = () => {
   const { id } = useParams();
-  const { dispach } = useContext(CartContext);
+  const { dispatch } = useContext(CartContext);
   const productsEndpoint = `products/${id}`;
   const { data, error, loading } = useFetchGetRequest(productsEndpoint);
 
@@ -14,14 +14,14 @@ const ProductDetailPage = () => {
   if (error) return <h1>Error loading products: {error.message}</h1>;
 
   const addToCart = () => {
-    dispach({
+    dispatch({
       type: "ADD_TO_CART",
       payload: data,
     });
   };
 
   const removeFromCart = () => {
-    dispach({
+    dispatch({
       type: "REMOVE_FROM_CART",
       payload: data,
     });

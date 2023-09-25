@@ -9,6 +9,7 @@ import ProductDetailPage from "../components/pages/ProductDetailPage.jsx";
 import { ProductUpdatenForm } from "../components/pages/admin/ProductUpdateForm.jsx";
 import ProductAdministratorForm from "../components/pages/admin/ProductAdministratorForm.jsx";
 import Admin from "../components/templates/Admin.jsx";
+import Cart from "../components/pages/Cart.jsx";
 
 const router = createBrowserRouter([
   {
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
       {
         path: "/products/:id",
         element: <ProductDetailPage />,
+      },
+      {
+        path: "/cart",
+        element: <Cart />,
       },
     ],
   },

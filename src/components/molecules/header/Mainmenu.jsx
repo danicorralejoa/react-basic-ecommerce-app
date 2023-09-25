@@ -6,7 +6,7 @@ import { UserContext } from "../../../context/UserContext";
 
 const MainMenu = () => {
   const navigate = useNavigate();
-  const { userData, setUserData } = useContext(UserContext);
+  const { userData } = useContext(UserContext);
 
   const handleSessionStatus = () => {
     deleteUserToken();
@@ -36,6 +36,11 @@ const MainMenu = () => {
           <li>
             <Link to="#" className="menu-item">
               About Us
+            </Link>
+          </li>
+          <li>
+            <Link to="/cart" className="menu-item">
+              Cart
             </Link>
           </li>
           {!token() ? (
