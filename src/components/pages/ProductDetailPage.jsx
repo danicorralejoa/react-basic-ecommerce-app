@@ -6,7 +6,7 @@ import { CartContext } from "../../context/CartContext";
 
 const ProductDetailPage = () => {
   const { id } = useParams();
-  const { dispatch } = useContext(CartContext);
+  const { state, dispatch } = useContext(CartContext);
   const productsEndpoint = `products/${id}`;
   const { data, error, loading } = useFetchGetRequest(productsEndpoint);
 
@@ -45,18 +45,22 @@ const ProductDetailPage = () => {
           </span>
           <span className="text-gray-600">In Stock</span>
         </div>
-        <button
-          className="bg-blue-500 text-white py-2 px-4 rounded"
-          onClick={addToCart}
-        >
-          Add to Cart
-        </button>
-        <button
-          className="bg-red-500 text-white py-2 px-4 rounded"
-          onClick={removeFromCart}
-        >
-          Remove from Cart
-        </button>
+        {!state.cart.find((e) => e.id == data.id) && (
+          <button
+            className="bg-blue-500 text-white py-2 px-4 rounded"
+            onClick={addToCart}
+          >
+            Add to Cart
+          </button>
+        )}
+        {state.cart.find((e) => e.id == data.id) && (
+          <button
+            className="bg-red-500 text-white py-2 px-4 rounded"
+            onClick={removeFromCart}
+          >
+            Remove from Cart
+          </button>
+        )}
       </div>
     </div>
   );
