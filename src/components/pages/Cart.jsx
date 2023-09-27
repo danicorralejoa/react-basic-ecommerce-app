@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { CartContext } from "../../context/CartContext";
 import { currencyFormatter } from "../../helpers/dataTransformations";
 import { Link } from "react-router-dom";
