@@ -1,9 +1,8 @@
 import { USER_TOKEN_KEY } from "../constants/env";
 
-export const setUserToken = (accessToken, refreshToken) => {
+export const setUserToken = (accessToken) => {
   const userTokenObj = {
     access_token: accessToken,
-    refreshtoken: refreshToken,
   };
   localStorage.setItem(USER_TOKEN_KEY, JSON.stringify(userTokenObj));
 };
