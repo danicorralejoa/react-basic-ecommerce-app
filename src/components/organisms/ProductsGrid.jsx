@@ -4,7 +4,7 @@ import { currencyFormatter } from "../../helpers/dataTransformations";
 import { CartContext } from "../../context/CartContext";
 
 const ProductsGrid = ({ product }) => {
-  const { id, images, title, price, description } = product;
+  const { id, images, product_name, price, description } = product;
   const { state, dispatch } = useContext(CartContext);
 
   const addToCart = () => {
@@ -26,7 +26,7 @@ const ProductsGrid = ({ product }) => {
       <Link to={`/products/${id}`}>
         <img src={images[0]} className="w-full h-150 object-cover" />
       </Link>
-      <h3 className="my-2">{title}</h3>
+      <h3 className="my-2">{product_name}</h3>
       <p> {description}</p>
       <p className="font-bold"> {currencyFormatter(price)}</p>
       <div className="flex-col">
