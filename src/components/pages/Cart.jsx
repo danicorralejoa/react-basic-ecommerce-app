@@ -1,12 +1,16 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { CartContext } from "../../context/CartContext";
 import { currencyFormatter } from "../../helpers/dataTransformations";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import { API_URL } from "../../constants/env";
+import { token } from "../../helpers/auth";
 
 const Cart = () => {
   const contextValue = useContext(CartContext);
   const cartItems = contextValue.state.cart;
-  const { dispatch } = useContext(CartContext);
+  const { state, dispatch } = useContext(CartContext);
+  const [ order, setOrder ] = useState()
 
   const removeFromCart = (item) => {
     dispatch({
@@ -15,8 +19,26 @@ const Cart = () => {
     });
   };
 
+
   const handleOrder = () => {
-    alert('You clicked me!!')
+    const products = state.cart.map((p) => {
+      return {
+          product_id: p.id,
+          amount: 1, //Always 1 as user can not buy multiple products
+          unit_price: p.price
+      }
+    })
+
+    const data = {
+      products
+    }
+
+    axios.post(`${API_URL}/private/purchase-orders`, data,{
+      headers: { 
+        Authorization: `Bearer ${token()}`}}).then( res => {
+          setOrder(res.data.data);
+          console.log(res)
+        } )
   }
 
   return (
@@ -50,10 +72,17 @@ const Cart = () => {
                   </div>
                 </div>
               ))}
-              <button className="bg-blue-500 text-white py-2 px-4 rounded"
-              onClick={handleOrder}>
-                Purchase
-              </button>
+              {
+                (!order) ? (
+                <button className="bg-blue-500 text-white py-2 px-4 rounded"
+                onClick={handleOrder}>
+                  Purchase
+                </button>)
+                : (
+                <p>
+                  Order Created Id: {order.id}
+                  </p>)
+              }
             </div>
           ) : (
             <>
