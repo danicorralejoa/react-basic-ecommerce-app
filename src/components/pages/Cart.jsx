@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { API_URL } from "../../constants/env";
 import { token } from "../../helpers/auth";
+import PayPalPayment from "../organisms/PayPalPayment";
 
 const Cart = () => {
   const contextValue = useContext(CartContext);
@@ -79,9 +80,11 @@ const Cart = () => {
                   Purchase
                 </button>)
                 : (
-                <p>
-                  Order Created Id: {order.id}
-                  </p>)
+                  <>
+                    <p>Order Created Id: {order.id}</p>
+                    <PayPalPayment />
+                  </>
+                )
               }
             </div>
           ) : (
