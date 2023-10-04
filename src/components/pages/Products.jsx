@@ -13,8 +13,7 @@ const Products = () => {
     <section className="py-16 max-w-256 m-auto">
       <h1 className="text-3xl mb-6">Explore our products</h1>
       <div className="grid grid-cols-4 gap-6">
-        {console.log(data)}
-        {data && data.length === 0 ? (
+        {data === null ? (
           <p>No products to show</p>
         ) : (
           data.map((product) => (
@@ -27,6 +26,3 @@ const Products = () => {
 };
 
 export default Products;
-
-//Añadir Link a página de producto
-//Anañidr formateo de producto con la libreria INTL

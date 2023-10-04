@@ -1,5 +1,5 @@
 import Logo from "./Logo";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const AdminMenu = () => {
   return (
