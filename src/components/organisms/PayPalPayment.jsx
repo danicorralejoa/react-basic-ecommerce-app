@@ -1,10 +1,13 @@
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import { PAYPAL_CLIENT_ID } from "../../constants/env";
 import { useNavigate } from "react-router-dom"
+import { useContext } from "react";
+import { CartContext } from "../../context/CartContext";
 
 
 const PayPalPayment = ({ value, order }) => {
   const nav = useNavigate()
+  const { state } = useContext(CartContext);
   return (
     <PayPalScriptProvider
       options={{
@@ -24,12 +27,13 @@ const PayPalPayment = ({ value, order }) => {
             ],
           })
         }}
-        onApprove={(data, actions) => {
+        onApprove={(_data, actions) => {
           return actions.order.capture().then((resp) => {
             if (resp.status === "COMPLETED") {
-              nav("/pago-exitoso")
+              state.cart = [];
+              nav("/order-success");
             } else {
-              alert("Tu pado no se procesó. Intenta nuevamente.")
+              alert("Tu pado no se procesó. Intenta nuevamente.");
             }
           })
         }}
