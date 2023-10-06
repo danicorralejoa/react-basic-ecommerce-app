@@ -12,6 +12,8 @@ const Cart = () => {
   const cartItems = contextValue.state.cart;
   const { state, dispatch } = useContext(CartContext);
   const [ order, setOrder ] = useState()
+  let cartValue = 0;
+  state.cart.forEach((c) => (cartValue += c.price))
 
   const removeFromCart = (item) => {
     dispatch({
@@ -39,7 +41,7 @@ const Cart = () => {
         Authorization: `Bearer ${token()}`}}).then( res => {
           setOrder(res.data.data);
           console.log(res)
-        } )
+        } ).catch((err) => console.log(err))
   }
 
   return (
@@ -47,7 +49,7 @@ const Cart = () => {
       <div className="container mx-auto p-4">
         <h1 className="text-2xl font-semibold mb-4">Your Cart</h1>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {console.log(state)}
+          {console.log(cartValue)}
           {cartItems.length > 0 ? (
             <div>
               {cartItems.map((item) => (
@@ -73,7 +75,7 @@ const Cart = () => {
                     </button>
                   </div>
                 </div>
-              ))}
+          ))}
               {
                 (!order) ? (
                 <button className="bg-blue-500 text-white py-2 px-4 rounded"
@@ -83,7 +85,7 @@ const Cart = () => {
                 : (
                   <>
                     <p>Order Created Id: {order.id}</p>
-                    <PayPalPayment order = {order} />
+                    <PayPalPayment order = {order} value = {cartValue} />
                   </>
                 )
               }
