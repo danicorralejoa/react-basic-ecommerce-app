@@ -12,7 +12,6 @@ const useFetchGetRequest = (endPoint = {}) => {
     axios
       .get(`${API_URL}/${endPoint}`)
       .then((response) => {
-        //console.log(response.data);
         setData(response.data.data);
         setLoading(false);
       })
