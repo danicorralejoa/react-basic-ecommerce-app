@@ -11,6 +11,7 @@ import ProductAdministratorForm from "../components/pages/admin/ProductAdministr
 import Admin from "../components/templates/Admin.jsx";
 import Cart from "../components/pages/Cart.jsx";
 import OrderCompleted from "../components/pages/OrderCompleted.jsx";
+import { Profile } from "../components/pages/Profile.jsx";
 
 const router = createBrowserRouter([
   {
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
       {
         path: "/order-success",
         element: <OrderCompleted />,
+      },
+      {
+        path: "/profile",
+        element: <Profile />,
       },
     ],
   },

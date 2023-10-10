@@ -66,6 +66,11 @@ const MainMenu = () => {
                 </li>
               )}
               <li>
+                <Link className="menu-item" to ="/profile">
+                  My Profile
+                </Link>
+              </li>
+              <li>
                 <a className="menu-item" onClick={handleSessionStatus}>
                   Log Out
                 </a>
