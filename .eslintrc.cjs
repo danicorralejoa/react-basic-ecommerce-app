@@ -5,25 +5,17 @@ module.exports = {
     },
     "extends": [
         "eslint:recommended",
-        "plugin:react/recommended",
-        "plugin:prettier/recommended"
+        "plugin:react/recommended"
     ],
     "parserOptions": {
         "ecmaVersion": "latest",
         "sourceType": "module"
     },
     "plugins": [
-        "react",
-        "prettier"
+        "react"
     ],
     "rules": {
         "react/react-in-jsx-scope": "off",
-        "react/prop-types": "off","prettier/prettier": [
-            "error",
-            {
-            "endOfLine": "auto"
-            }
-          ]
-
+        "react/prop-types": "off"
     }
 }

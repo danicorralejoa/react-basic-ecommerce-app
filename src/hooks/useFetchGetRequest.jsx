@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ALTERNATIVE_API_URL } from "../constants/env";
+import { API_URL } from "../constants/env";
 import { useEffect, useState } from "react";
 
 const useFetchGetRequest = (endPoint = {}) => {
@@ -10,17 +10,16 @@ const useFetchGetRequest = (endPoint = {}) => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get(`${ALTERNATIVE_API_URL}/${endPoint}`)
+      .get(`${API_URL}/${endPoint}`)
       .then((response) => {
-        //console.log(response);
-        setData(response.data);
+        setData(response.data.data);
         setLoading(false);
       })
       .catch((err) => {
         console.warn(
           "An error ocurred: ",
           err,
-          `${ALTERNATIVE_API_URL}/${endPoint}`
+          `${API_URL}/${endPoint}`
         );
         setError(err);
       })

@@ -3,10 +3,13 @@ import { deleteUserToken, token } from "../../../helpers/auth";
 import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { UserContext } from "../../../context/UserContext";
+import { CartContext } from "../../../context/CartContext";
 
 const MainMenu = () => {
   const navigate = useNavigate();
   const { userData } = useContext(UserContext);
+  const { state } = useContext(CartContext);
+  const cartItemCount = state.cart.length;
 
   const handleSessionStatus = () => {
     deleteUserToken();
@@ -41,6 +44,10 @@ const MainMenu = () => {
           <li>
             <Link to="/cart" className="menu-item">
               Cart
+              {/* Display the number of items in the cart here */}
+              <span className="cart-item-count">
+                {cartItemCount > 0 ? cartItemCount : null}
+              </span>
             </Link>
           </li>
           {!token() ? (
@@ -58,6 +65,11 @@ const MainMenu = () => {
                   </Link>
                 </li>
               )}
+              <li>
+                <Link className="menu-item" to ="/profile">
+                  My Profile
+                </Link>
+              </li>
               <li>
                 <a className="menu-item" onClick={handleSessionStatus}>
                   Log Out

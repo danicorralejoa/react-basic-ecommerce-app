@@ -10,6 +10,8 @@ import { ProductUpdatenForm } from "../components/pages/admin/ProductUpdateForm.
 import ProductAdministratorForm from "../components/pages/admin/ProductAdministratorForm.jsx";
 import Admin from "../components/templates/Admin.jsx";
 import Cart from "../components/pages/Cart.jsx";
+import OrderCompleted from "../components/pages/OrderCompleted.jsx";
+import { Profile } from "../components/pages/Profile.jsx";
 
 const router = createBrowserRouter([
   {
@@ -32,6 +34,14 @@ const router = createBrowserRouter([
       {
         path: "/cart",
         element: <Cart />,
+      },
+      {
+        path: "/order-success",
+        element: <OrderCompleted />,
+      },
+      {
+        path: "/profile",
+        element: <Profile />,
       },
     ],
   },

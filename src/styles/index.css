@@ -5,3 +5,12 @@
 .menu-item {
     @apply text-white hover:text-gray-300
 }
+
+.cart-item-count {
+    background-color: rgb(255, 255, 255); /* Background color for the count */
+    color: rgb(0, 0, 0); /* Text color for the count */
+    font-size: 0.8rem; /* Adjust the font size as needed */
+    padding: 2px 6px; /* Adjust padding as needed */
+    border-radius: 50%; /* Make it a circle */
+    margin-left: 5px; /* Add spacing between "Cart" and the count */
+  }

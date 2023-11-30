@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { ALTERNATIVE_API_URL, API_URL } from "../../constants/env";
+import { API_URL } from "../../constants/env";
 import { setUserToken } from "../../helpers/auth";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -32,9 +32,10 @@ function Login() {
     };
 
     axios
-      .post(`${ALTERNATIVE_API_URL}/auth/login/`, userCredentials)
+      .post(`${API_URL}/public/login`, userCredentials)
       .then((response) => {
-        setUserToken(response.data.access_token, response.data.refresh_token);
+        //console.log(response.data.data.token)
+        setUserToken(response.data.data.token);
         setLoading(false);
         console.warn(
           `User Logged In succesfully ${JSON.stringify(response.data)}`
